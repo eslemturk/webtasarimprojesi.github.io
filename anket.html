@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anket</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Anket</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Anasayfa</a></li>
+                <li><a href="hakkimda.html">Hakkımda</a></li>
+                <li><a href="iletisim.html">İletişim</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <div class="container">
+                <form id="survey-form">
+                    <h2>Anket Soruları</h2>
+                    <div class="question">
+                        <label for="q1">1. Bloğumu nasıl buldunuz?</label>
+                        <input type="text" id="q1" name="question1" required>
+                    </div>
+                    <div class="question">
+                        <label for="q2">2. Benim hakkımdaki düşünceleriniz?</label>
+                        <input type="text" id="q2" name="question2" required>
+                    </div>
+                    <div class="question">
+                        <label for="q3">3. En sevdiğiniz renk nedir?</label>
+                        <input type="text" id="q3" name="question3" required>
+                    </div>
+                    <div class="question">
+                        <label for="q4">4. Burcunuz nedir?</label>
+                        <input type="text" id="q4" name="question4" required>
+                    </div>
+                    <div class="question">
+                        <label for="q5">5. En sevdiğiniz film nedir?</label>
+                        <input type="text" id="q5" name="question5" required>
+                    </div>
+                    <button type="submit">Gönder</button>
+                </form>
+                <div id="result" class="hidden"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; Blog Sitem</p>
+    </footer>
+
+    <script>
+        // Form gönderim olayı
+        document.getElementById('survey-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Formun normal gönderimini engeller
+            
+            let resultText = "<h2>Sonuçlar:</h2><ul>";
+            const formData = new FormData(event.target);
+            
+            formData.forEach((value, key) => {
+                resultText += `<li><strong>${key}:</strong> ${value}</li>`;
+            });
+            
+            resultText += "</ul>";
+            document.getElementById('result').innerHTML = resultText;
+            document.getElementById('result').classList.remove("hidden");
+        });
+    </script>
+</body>
+</html>
